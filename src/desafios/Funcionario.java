@@ -1,6 +1,7 @@
 package desafios;
 
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Funcionario {
     private String nome;
@@ -35,6 +36,11 @@ public class Funcionario {
     }
 
     public void setIdade(int idade) {
+        Scanner sc = new Scanner(System.in);
+        while (idade <= 0 || idade > 100) {
+            System.out.println("Idade inválida. Digite novamente:");
+            idade = sc.nextInt();
+        }
         this.idade = idade;
     }
 
@@ -51,13 +57,18 @@ public class Funcionario {
     }
 
     public void setSituacao(String situacao) {
-        this.situacao = situacao;
+        Scanner sc = new Scanner(System.in);
+        while (!(Objects.equals(situacao, "ativo")) && !(Objects.equals(situacao, "inativo"))) {
+            System.out.println("Opção inválida. Digite (ativo) ou (inativo)");
+            situacao = sc.next();
+        }
+        this.situacao = getSituacao();
     }
 
     public String demitirFuncionario() {
-        if (Objects.equals(getSituacao(), "ativo")) {
+        if (Objects.equals(situacao, "ativo")) {
             return "foi promovido(a) a cliente";
-        } else if (Objects.equals(getSituacao(), "inativo")) {
+        } else if (Objects.equals(situacao, "inativo")) {
             return "é invativo(a), logo não é mais um(a) funcionário(a)";
         }
         return null;

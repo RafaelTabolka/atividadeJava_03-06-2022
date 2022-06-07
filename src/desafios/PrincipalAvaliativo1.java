@@ -9,6 +9,7 @@ public class PrincipalAvaliativo1 {
         System.out.println("Insira os dados para quatro funcionários:");
 
         List<Funcionario> func = new ArrayList<Funcionario>();
+        Funcionario padrao = new Funcionario();
 
         for (int i = 0; i < 4; i++) {
             System.out.println();
@@ -20,11 +21,7 @@ public class PrincipalAvaliativo1 {
 
             System.out.print("Idade: ");
             int idade = sc.nextInt();
-
-            while (idade <= 0 || idade >= 100) {
-                System.out.println("Idade inválida. Digite novamente:");
-                idade = sc.nextInt();
-            }
+            padrao.setIdade(idade);
 
             System.out.print("Cargo: ");
             sc.next();
@@ -32,11 +29,7 @@ public class PrincipalAvaliativo1 {
 
             System.out.print("Situação ");
             String situacao = sc.next().toLowerCase();
-
-            while (!(Objects.equals(situacao, "ativo")) && !(Objects.equals(situacao, "inativo"))) {
-                System.out.print("Dado inválido. Digite ativo ou inativo");
-                situacao = sc.next();
-            }
+            padrao.setSituacao(situacao);
 
             func.add(new Funcionario(nome, idade, cargo, situacao));
         }
